@@ -1,4 +1,8 @@
-local supported = require '__supported'
+local function isWindows()
+  return type(package) == 'table' and type(package.config) == 'string' and package.config:sub(1,1) == '\\'
+end
+
+local supported = not isWindows()
 
 local kw = { -- Stands for KeyWord
   -- Reset
