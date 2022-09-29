@@ -1,9 +1,11 @@
+local v = '1.1'
+
 package = 'ansicolorsx'
-version = '1.0-1'
+version = v..'-1'
 
 source = {
-  url = 'https://github.com/UrNightmaree/ansicolorsx.lua',
-  tag = 'v1.0'
+  url = '',
+  dir = 'ansicolorsx/'..v
 }
 
 description = {
