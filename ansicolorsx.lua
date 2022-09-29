@@ -116,17 +116,18 @@ local function esckeys(str)
   if support256 then
     errw = nil
 
-    for n in str:gmatch 'tcolor!([%d]+)' do
+    for n in str:gmatch 'tcolor:([%d]+)' do
       table.insert(buffer,esctnum(tonumber(n)))
     end
-    for n in str:gmatch 'tcolorbg!([%d]+)' do
+    for n in str:gmatch 'tcolorbg:([%d]+)' do
+      print(n)
       table.insert(buffer,esctnum(tonumber(n),true))
     end
 
-    for rgb in str:gmatch 'rgbcolor!([%d],[%d],[%d])' do
+    for rgb in str:gmatch 'rgbcolor:([%d]+,[%d]+,[%d]+)' do
       table.insert(buffer,rgbnum(rgb))
     end
-    for rgb in str:gmatch 'rgbcolorbg!([%d],[%d],[%d])' do
+    for rgb in str:gmatch 'rgbcolorbg:([%d]+,[%d]+,[%d]+)' do
       table.insert(buffer,rgbnum(rgb,true))
     end
   end
