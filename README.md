@@ -43,4 +43,10 @@ Background colors:
  * `cyanbg`
  * `whitebg`
 
-> If you're using 256-colors support terminal (such as xterm, Alacritty, etc.), you can use special attributes that uses 256-colors codes. The syntax: `b(color)` or `b(color)bg`, example: `bred` or `bwhitebg`.
+Special attributes (available if your terminal supports 256-colors):
+ * `b(color)`, e.g `bred`
+ * `b(color)bg`, e.g `bbluebg`
+ * `tcolor!(id)`, e.g `tcolor!110`
+ * `tcolorbg!(id)`, e.g `tcolorbg!100`
+
+> For more information about 256-colors and the ID, check fnky's [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797#256-colors)
