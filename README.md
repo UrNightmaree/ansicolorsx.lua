@@ -52,8 +52,8 @@ Special attributes:
    * `b(color)`, e.g `bred`
    * `b(color)bg`, e.g `bbluebg`
  * Full color (xterm/256-color only):
-   * `tcolor:(id)`, e.g `tcolor!110`
-   * `tcolorbg:(id)`, e.g `tcolorbg!100`
+   * `tcolor:(id)`, e.g `tcolor:110`
+   * `tcolorbg:(id)`, e.g `tcolorbg:100`
    * `rgbcolor:(r),(g),(b)`, e.g `rgbcolor:255,0,0`
    * `rgbcolorbg:(r),(g),(b)`, e.g `rgbcolorbg:255,255,0`
 
