@@ -47,10 +47,14 @@ Background colors:
  * `cyanbg`
  * `whitebg`
 
-Special attributes (available if your terminal supports 256-colors):
- * `b(color)`, e.g `bred`
- * `b(color)bg`, e.g `bbluebg`
- * `tcolor!(id)`, e.g `tcolor!110`
- * `tcolorbg!(id)`, e.g `tcolorbg!100`
+Special attributes:
+ * Bold color (aixterm only):
+  * `b(color)`, e.g `bred`
+  * `b(color)bg`, e.g `bbluebg`
+ * Full color (xterm/256-color only):
+  * `tcolor:(id)`, e.g `tcolor!110`
+  * `tcolorbg:(id)`, e.g `tcolorbg!100`
+  * `rgbcolor:(r),(g),(b)`, e.g `rgbcolor:255,0,0`
+  * `rgbcolorbg:(r),(g),(b)`, e.g `rgbcolorbg:255,255,0`
 
 > For more information about 256-colors and the ID, check fnky's [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797#256-colors)
