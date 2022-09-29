@@ -5,6 +5,7 @@ end
 local supported = not isWindows()
 
 local support256 = os.getenv'TERM':find'256'
+local supportAixterm = os.getenv'TERM' == 'aixterm'
 
 local kw = { -- Stands for KeyWord
   -- Reset
@@ -41,7 +42,7 @@ local kw = { -- Stands for KeyWord
   whitebg = 47,
 }
 
-if support256 and supported then
+if supportAixterm and supported then
   local ext_kw = {
     -- Foreground colors (bright)
     bblack = 90,
@@ -120,7 +121,6 @@ local function esckeys(str)
       table.insert(buffer,esctnum(tonumber(n)))
     end
     for n in str:gmatch 'tcolorbg:([%d]+)' do
-      print(n)
       table.insert(buffer,esctnum(tonumber(n),true))
     end
 
