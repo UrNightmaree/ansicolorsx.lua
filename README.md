@@ -1,4 +1,6 @@
 # ansicolorsx.lua
+[![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)](LICENSE)
+
 Extended version of [ansicolors.lua](https://github.com/kikito/ansicolors.lua) with latest ANSI color codes.
 
 ## Usage
