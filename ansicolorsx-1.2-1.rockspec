@@ -5,7 +5,7 @@ version = v..'-1'
 
 source = {
   url = 'https://github.com/UrNightmaree/ansicolorsx.lua/archive/v'..v..'.tar.gz',
-  dir = 'src'
+  dir = 'ansicolorsx.lua-'..v
 }
 
 description = {
