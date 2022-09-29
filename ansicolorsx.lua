@@ -71,6 +71,8 @@ end
 
 local escstr = '\27[%dm'
 local esctstr = '\27[%d8;5;%dm'
+local rgbstr = '\27[%d8;2;%sm'
+
 local function escnum(num)
   return escstr:format(num)
 end
@@ -81,7 +83,17 @@ local function esctnum(num,bg)
   else
     return esctstr:format(3,num)
   end
-end 
+end
+
+local function rgbnum(str,bg)
+  str = str:gsub('[,]+',';')
+  
+  if bg then
+    return rgbstr:format(4,str)
+  else
+    return rgbstr:format(3,str)
+  end
+end
 
 local function esckeys(str)
   if not supported then return '' end
@@ -102,15 +114,20 @@ local function esckeys(str)
   end
 
   if support256 then
-    for n in str:gmatch 'tcolor!([%d]+)' do
-      errw = nil
+    errw = nil
 
+    for n in str:gmatch 'tcolor!([%d]+)' do
       table.insert(buffer,esctnum(tonumber(n)))
     end
     for n in str:gmatch 'tcolorbg!([%d]+)' do
-      errw = nil
-
       table.insert(buffer,esctnum(tonumber(n),true))
+    end
+
+    for rgb in str:gmatch 'rgbcolor!([%d],[%d],[%d])' do
+      table.insert(buffer,rgbnum(rgb))
+    end
+    for rgb in str:gmatch 'rgbcolorbg!([%d],[%d],[%d])' do
+      table.insert(buffer,rgbnum(rgb,true))
     end
   end
   
@@ -140,5 +157,7 @@ end
 
 ---@overload fun(str: string): string
 local color = setmetatable({ noReset = replcode }, ac_mt)
+
+print(color'%{rgbcolorbg!0,0,0}test')
 
 return color
