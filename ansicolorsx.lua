@@ -158,6 +158,4 @@ end
 ---@overload fun(str: string): string
 local color = setmetatable({ noReset = replcode }, ac_mt)
 
-print(color'%{rgbcolorbg!0,0,0}test')
-
 return color
