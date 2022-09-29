@@ -1,7 +1,7 @@
 # ansicolorsx.lua
 [![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)](COPYING)
 
-[![Luarocks](https://img.shields.io/luarocks/v/UrNightmaree/ansicolorsx?label=Luarocks&logo=Lua)](https://luarocks.org/modules/UrNightmaree/ansicolorsx)
+[![Luarocks](https://img.shields.io/luarocks/v/UrNightmaree/ansicolorsx?label=Luarocks&logo=Lua)](https://luarocks.org/modules/UrNightmaree/ansicolorsx) [![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/UrNightmaree/ansicolorsx.lua?label=Tag&logo=GitHub)](https://github.com/UrNightmaree/ansicolorsx.lua/releases/latest)
 
 Extended version of [ansicolors.lua](https://github.com/kikito/ansicolors.lua) with latest ANSI color codes.
 
