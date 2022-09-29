@@ -4,8 +4,8 @@ package = 'ansicolorsx'
 version = v..'-1'
 
 source = {
-  url = '',
-  dir = 'ansicolorsx/'..v
+  url = 'https://raw.githubusercontent.com/UrNightmaree/ansicolorsx.lua/master/ansicolorsx.tar.gz',
+  dir = 'ansicolorsx-'..v
 }
 
 description = {
