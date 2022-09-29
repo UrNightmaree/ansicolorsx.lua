@@ -9,6 +9,8 @@ The syntax is same as old `ansicolors` but with new attributes.
 local color = require 'ansicolorsx'
 
 print(color '%{italic red}An italic text with red color!')
+print(color '%{bbluebg cyan}A text with bright blue background and cyan foreground color!')
+print(color '%{tcolor!110 underline}An underline text with cyan-like color!')
 ```
 
 ## Attributes
