@@ -4,9 +4,6 @@ end
 
 local supported = not isWindows()
 
-local support256 = os.getenv'TERM':find'256'
-local supportAixterm = os.getenv'TERM' == 'aixterm'
-
 local kw = { -- Stands for KeyWord
   -- Reset
   reset = 0,
@@ -40,35 +37,28 @@ local kw = { -- Stands for KeyWord
   magentabg = 45,
   cyanbg = 46,
   whitebg = 47,
+
+  -- Foreground colors (bright)
+  bblack = 90,
+  bred = 91,
+  bgreen = 92,
+  byellow = 93,
+  bblue = 94,
+  bmagenta = 95,
+  bcyan = 96,
+  bwhite = 97,
+
+  -- Background colors (bright)
+  bblackbg = 100,
+  bredbg = 101,
+  bgreenbg = 102,
+  byellowbg = 103,
+  bbluebg = 104,
+  bmagentabg = 105,
+  bcyanbg = 106,
+  bwhitebg = 107
 }
 
-if supportAixterm and supported then
-  local ext_kw = {
-    -- Foreground colors (bright)
-    bblack = 90,
-    bred = 91,
-    bgreen = 92,
-    byellow = 93,
-    bblue = 94,
-    bmagenta = 95,
-    bcyan = 96,
-    bwhite = 97,
-
-    -- Background colors (bright)
-    bblackbg = 100,
-    bredbg = 101,
-    bgreenbg = 102,
-    byellowbg = 103,
-    bbluebg = 104,
-    bmagentabg = 105,
-    bcyanbg = 106,
-    bwhitebg = 107
-  }
-
-  for i,v in pairs(ext_kw) do
-    kw[i] = v
-  end
-end
 
 local escstr = '\27[%dm'
 local esctstr = '\27[%d8;5;%dm'
@@ -88,7 +78,7 @@ end
 
 local function rgbnum(str,bg)
   str = str:gsub('[,]+',';')
-  
+
   if bg then
     return rgbstr:format(4,str)
   else
@@ -103,35 +93,31 @@ local function esckeys(str)
   local number
 
   local errw
+
+  for n in str:gmatch 'tcolor:([%d]+)' do
+    table.insert(buffer,esctnum(tonumber(n)))
+  end
+  for n in str:gmatch 'tcolorbg:([%d]+)' do
+    table.insert(buffer,esctnum(tonumber(n),true))
+  end
+                                                            
+  for rgb in str:gmatch 'rgbcolor:([%d]+,[%d]+,[%d]+)' do
+    table.insert(buffer,rgbnum(rgb))
+  end
+  for rgb in str:gmatch 'rgbcolorbg:([%d]+,[%d]+,[%d]+)' do
+    table.insert(buffer,rgbnum(rgb,true))
+  end
+
   for w in str:gmatch '%w+' do
     number = kw[w]
-    
+
     if not number then
       errw = w
       break
     end
-    
+
     table.insert(buffer,escnum(number))
   end
-
-  if support256 then
-    errw = nil
-
-    for n in str:gmatch 'tcolor:([%d]+)' do
-      table.insert(buffer,esctnum(tonumber(n)))
-    end
-    for n in str:gmatch 'tcolorbg:([%d]+)' do
-      table.insert(buffer,esctnum(tonumber(n),true))
-    end
-
-    for rgb in str:gmatch 'rgbcolor:([%d]+,[%d]+,[%d]+)' do
-      table.insert(buffer,rgbnum(rgb))
-    end
-    for rgb in str:gmatch 'rgbcolorbg:([%d]+,[%d]+,[%d]+)' do
-      table.insert(buffer,rgbnum(rgb,true))
-    end
-  end
-  
 
   if errw then
     error('Unknown keyword: '..errw)
@@ -145,18 +131,19 @@ local function replcode(str)
   return str
 end
 
-local function color(str)
+local function C(str)
   str = tostring(str or '')
 
   return replcode('%{reset}'..str..'%{reset}')
 end
 
-local ac_mt = { __call = function(_,str)
-  return color(str)
-end
+local ac_mt = {
+  __call = function(_,str)
+    return C(str)
+  end
 }
 
 ---@overload fun(str: string): string
-local color = setmetatable({ noReset = replcode }, ac_mt)
+local ansicolorsx = setmetatable({ noReset = replcode }, ac_mt)
 
-return color
+return ansicolorsx

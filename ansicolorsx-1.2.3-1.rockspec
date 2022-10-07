@@ -1,4 +1,4 @@
-local v = '1.2.2'
+local v = '1.2.3'
 
 package = 'ansicolorsx'
 version = v..'-1'
