@@ -93,27 +93,34 @@ local function esckeys(str)
   local number
 
   local errw
+	local preverr = false
 
   for n in str:gmatch 'tcolor:([%d]+)' do
     table.insert(buffer,esctnum(tonumber(n)))
+		preverr = true
   end
   for n in str:gmatch 'tcolorbg:([%d]+)' do
     table.insert(buffer,esctnum(tonumber(n),true))
+		preverr = true
   end
                                                             
   for rgb in str:gmatch 'rgbcolor:([%d]+,[%d]+,[%d]+)' do
     table.insert(buffer,rgbnum(rgb))
+		preverr = true
   end
   for rgb in str:gmatch 'rgbcolorbg:([%d]+,[%d]+,[%d]+)' do
     table.insert(buffer,rgbnum(rgb,true))
+		preverr = true
   end
 
   for w in str:gmatch '%w+' do
     number = kw[w]
 
-    if not number then
+    if not number and not preverr then
       errw = w
       break
+		elseif not number then
+			break
     end
 
     table.insert(buffer,escnum(number))

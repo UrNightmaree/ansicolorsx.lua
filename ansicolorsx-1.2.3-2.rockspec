@@ -1,7 +1,7 @@
 local v = '1.2.3'
 
 package = 'ansicolorsx'
-version = v..'-1'
+version = v..'-2'
 
 source = {
   url = 'https://github.com/UrNightmaree/ansicolorsx.lua/archive/v'..v..'.tar.gz',
