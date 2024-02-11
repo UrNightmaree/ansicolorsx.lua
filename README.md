@@ -1,3 +1,7 @@
+> [!WARNING]
+>
+> This library is now deprecated in favor of new, much better API with complete documentation called [Warna](https://github.com/komothecat/warna).
+
 # ansicolorsx.lua
 [![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)](COPYING)
 
